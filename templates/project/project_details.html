@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Project Details{% endblock head_title %}
+
+{% block content %}
+    <div class="col-sm-12">
+        <div><h1>{{ project_name }}</h1></div>
+        <div class="row">
+        {% if project_tasks.count == 0 %}
+            <div><h1>No tasks</h1></div>
+        {% else %}
+            <div><h1>Tasks</h1></div>
+            {% for project_task in project_tasks %}
+                <div class="col-sm-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>
+                                <a href="/task/{{ project_task.id }}">{{ project_task.name }}</a>
+                            </h3>
+                            <p>
+                                Task id : {{ project_task.id }}
+                            </p>
+                            <p>
+                                Assignee : {{ project_task.assignee_name }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+{% endblock content %}

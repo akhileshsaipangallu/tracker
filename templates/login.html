@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Login{% endblock head_title %}
+
+{% block content %}
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="thumbnail">
+                <div class="caption">
+                    <div>
+                        <form action="/accounts/login/" method="post">
+                            <input type="text" placeholder="username" name="username">
+                            <input type="password" placeholder="password" name="password">
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

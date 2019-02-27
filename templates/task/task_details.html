@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Task Details{% endblock head_title %}
+
+{% block content %}
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="thumbnail">
+                <div class="caption">
+                    <p>
+                        Task id : {{ task.id }}
+                    </p>
+                    <p>
+                        Name : {{ task.name }}
+                    </p>
+                    <p>
+                        Description : {{ task.description }}
+                    </p>
+                    <p>
+                        Project name : {{ task.project.name }}
+                    </p>
+                    <p>
+                        Assignee : {{ task.assignee.first_name }} {{ task.assignee.last_name }}
+                    </p>
+                </div>
+                <div class="caption">
+                    <div>
+                        <p>Edit assignee</p>
+                    </div>
+                    <div>
+                        <form action="/task/{{ task.id }}/" method="post">
+                            <select name="assignee" id="assignee_id">
+                                {% for assignee in user_auto_fill %}
+                                    <option value={{ assignee.id }}
+                                            {% if assignee.id == task.assignee_id %}selected{% endif %}
+                                    >{{ assignee.full_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
